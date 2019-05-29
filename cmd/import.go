@@ -59,6 +59,7 @@ func newImportCmd() *cobra.Command {
 	cmd.AddCommand(newCmdOpenStackImporter(options))
 	cmd.AddCommand(newCmdKubernetesImporter(options))
 	cmd.AddCommand(newCmdGithubImporter(options))
+	cmd.AddCommand(newCmdDatadogImporter(options))
 	return cmd
 }
 
@@ -191,8 +192,8 @@ func Path(pathPattern, providerName, serviceName, output string) string {
 func listCmd(provider terraform_utils.ProviderGenerator) *cobra.Command {
 	return &cobra.Command{
 		Use:   "list",
-		Short: "List supported resources for " + provider.GetName()+" provider",
-		Long:  "List supported resources for " + provider.GetName()+" provider",
+		Short: "List supported resources for " + provider.GetName() + " provider",
+		Long:  "List supported resources for " + provider.GetName() + " provider",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			services := []string{}
 			for k := range provider.GetSupportedService() {
